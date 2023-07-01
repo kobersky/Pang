@@ -35,7 +35,7 @@ public class MonsterPhysicsHybrid : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("OnTriggerEnter Wall");
+        Debug.Log("OnTriggerEnter (monster)");
         _currentXForce = -_currentXForce;
 
         _rigidBody.velocity = new Vector3(-_rigidBody.velocity.x, _rigidBody.velocity.y, 0);

@@ -25,13 +25,19 @@ public class GameController : MonoBehaviour
     {
         SubscribeToPauseMenuEvents();
         SubscribeToMainMenuEvents();
+        SubscribeToPlayerEvents();
+        SubscribeToLevelEvents();
+
     }
 
     private void OnDisable()
     {
         UnsubscribeFromPauseMenuEvents();
         UnsubscribeFromMainMenuEvents();
+        UnsubscribeFromPlayerEvents();
+        UnsubscribeFromLevelEvents();
     }
+
 
     private void SubscribeToMainMenuEvents()
     {
@@ -47,6 +53,17 @@ public class GameController : MonoBehaviour
         PauseMenuManager.OnQuitGameClickedAction += QuitGame;
     }
 
+    private void SubscribeToPlayerEvents()
+    {
+        CharControlledPlayer.OnPlayerDied += GameOver;
+        CharControlledPlayer.OnPlayerFinishedLevel += GoToNextLevel;
+    }
+
+    private void SubscribeToLevelEvents()
+    {
+        EnemyManager.OnAllMonstersKilled += GoToNextLevel;
+    }
+
     private void UnsubscribeFromMainMenuEvents()
     {
         RestartMenuManager.OnStartNewGameClickedAction -= StartANewGame;
@@ -59,6 +76,17 @@ public class GameController : MonoBehaviour
         PauseMenuManager.OnResumeClickedAction -= ResumeGame;
         PauseMenuManager.OnReturnToMainMenuClickedAction -= ReturnToMainMenu;
         PauseMenuManager.OnQuitGameClickedAction -= QuitGame;
+    }
+
+    private void UnsubscribeFromPlayerEvents()
+    {
+        CharControlledPlayer.OnPlayerDied -= GameOver;
+        CharControlledPlayer.OnPlayerFinishedLevel -= GoToNextLevel;
+    }
+
+    private void UnsubscribeFromLevelEvents()
+    {
+        EnemyManager.OnAllMonstersKilled -= GoToNextLevel;
     }
 
     public void StartANewGame()
@@ -93,6 +121,16 @@ public class GameController : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    private void GameOver()
+    {
+        _sceneLoader.LoadGameOverScene();
+    }
+
+    private void GoToNextLevel()
+    {
+        _sceneLoader.LoadNextLevel();
     }
 
 }

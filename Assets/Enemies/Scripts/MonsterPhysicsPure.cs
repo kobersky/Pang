@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,30 +15,56 @@ public class MonsterPhysicsPure : MonoBehaviour
 
     float _currentXForce = 0;
 
-    float _lastYSpeed;
+    public static event Action OnMonsterBorn;
+    public static event Action<Vector3> OnMonsterDied;
+
     private void Start()
     {
         _currentXForce = _startingXForce;
         _rigidBody.AddForce(new Vector3(_currentXForce, 0, 0));
     }
 
+    private void OnEnable()
+    {
+        OnMonsterBorn?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        OnMonsterDied?.Invoke(transform.position);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log($"OnCollisionEnter (Monster): {collision.collider.tag}");
+
         if (collision.collider.tag == "Floor")
         {
-         //   Debug.Log("OnCollisionEnter Floor");
+            //   Debug.Log("OnCollisionEnter Floor");
 
             _rigidBody.AddForce(new Vector3(_currentXForce, _floorCollisionBounceForce, 0));
         }
 
         if (collision.collider.tag == "Wall")
         {
-         //   Debug.Log("OnCollisionEnter Wall");
+            //   Debug.Log("OnCollisionEnter Wall");
             _currentXForce = -_currentXForce;
 
             _rigidBody.velocity = new Vector3(-_rigidBody.velocity.x, _rigidBody.velocity.y, 0);
 
             //_rigidBody.AddForce(new Vector3(_currentXForce, _floorCollisionBounceForce, 0));
         }
+
+        if (collision.collider.tag == "PlayerProjectile")
+        {
+            Debug.Log($"IMPACT: Monster: OnCollisionEnter: {collision.collider.tag}");
+            Die();
+        }
+    }
+
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
