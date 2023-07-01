@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MonsterPhysicsPure : MonoBehaviour
+public class Monster : MonoBehaviour
 {
+    [SerializeField] EnemyType _enemyType;
+
     [SerializeField] Rigidbody _rigidBody;
     [SerializeField] Animator _animator;
     [SerializeField] Collider _collider;
@@ -16,11 +18,11 @@ public class MonsterPhysicsPure : MonoBehaviour
     float _currentXForce = 0;
 
     public static event Action OnMonsterBorn;
-    public static event Action<Vector3> OnMonsterDied;
+    public static event Action<EnemyType, Vector3> OnMonsterDied;
 
-    private void Start()
+    public void InitMovement(bool isFacingRight)
     {
-        _currentXForce = _startingXForce;
+        _currentXForce = isFacingRight ? _startingXForce : - _startingXForce;
         _rigidBody.AddForce(new Vector3(_currentXForce, 0, 0));
     }
 
@@ -31,7 +33,7 @@ public class MonsterPhysicsPure : MonoBehaviour
 
     private void OnDisable()
     {
-        OnMonsterDied?.Invoke(transform.position);
+        OnMonsterDied?.Invoke(_enemyType, transform.position);
     }
 
     private void OnCollisionEnter(Collision collision)

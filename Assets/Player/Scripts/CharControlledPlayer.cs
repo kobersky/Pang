@@ -75,7 +75,7 @@ public class CharControlledPlayer : MonoBehaviour
         Debug.Log($"X: OnTriggerEnter: tag: {other.tag}, layer: {other.gameObject.layer}");
         if (other.tag == "Monster")
         {
-            OnPlayerDied?.Invoke();//TODO: revert after test
+          //  OnPlayerDied?.Invoke();//TODO: revert after test
         }
         
     }

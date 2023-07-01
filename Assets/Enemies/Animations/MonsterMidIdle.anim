@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1405093399, guid: 4d3ec79c2a55e82489217bae590c1425, type: 3}
+      value: {fileID: -530215951, guid: d94557e622b85c34eac1171ae644f7a8, type: 3}
     - time: 0.5
-      value: {fileID: 1023309298, guid: 4d3ec79c2a55e82489217bae590c1425, type: 3}
+      value: {fileID: -983148766, guid: d94557e622b85c34eac1171ae644f7a8, type: 3}
     attribute: m_Sprite
     path: MonsterGfx
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1405093399, guid: 4d3ec79c2a55e82489217bae590c1425, type: 3}
-    - {fileID: 1023309298, guid: 4d3ec79c2a55e82489217bae590c1425, type: 3}
+    - {fileID: -530215951, guid: d94557e622b85c34eac1171ae644f7a8, type: 3}
+    - {fileID: -983148766, guid: d94557e622b85c34eac1171ae644f7a8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

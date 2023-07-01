@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum EnemyType 
 {
-    HugeMonster, MediumMonster, SmallMonster,
+    BigMonster, MediumMonster, SmallMonster,
 }
