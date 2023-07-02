@@ -79,6 +79,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Player\Scripts\BulletNew.cs" />
+    <Compile Include="Assets\MobileSupport\MobileController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Camera\CameraRatioEnforcer.cs" />
     <Compile Include="Assets\Enemies\Scripts\Monster.cs" />

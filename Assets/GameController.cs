@@ -1,13 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using System.Threading.Tasks;
+
 public class GameController : MonoBehaviour
 {
-    public GameObject _mobileController;
-
     private SceneLoader _sceneLoader;
     private bool _isPaused;
 
@@ -16,12 +13,6 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         _sceneLoader = new SceneLoader();
-
-    #if UNITY_ANDROID
-        _mobileController.SetActive(true);   
-    #else
-        _mobileController.SetActive(false);
-    #endif
     }
 
     private void OnEnable()
@@ -30,7 +21,6 @@ public class GameController : MonoBehaviour
         SubscribeToMainMenuEvents();
         SubscribeToPlayerEvents();
         SubscribeToLevelEvents();
-
     }
 
     private void OnDisable()
@@ -100,29 +90,25 @@ public class GameController : MonoBehaviour
     public void PauseGame()
     {
         _isPaused = !_isPaused;
-        Debug.Log($"INPUT_GC: PauseGame!");
         Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
         _isPaused = !_isPaused;
-        Debug.Log($"INPUT_GC: OnResume");
         Time.timeScale = 1.0f;
     }
 
     public void ReturnToMainMenu()
     {
-        Debug.Log($"INPUT_UI: ReturnToMainMenu");
         _sceneLoader.LoadMainMenuScene();
     }
 
     public void QuitGame()
     {
-        Debug.Log($"INPUT_UI: QuitGame");
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#endif
+    #endif
         Application.Quit();
     }
 
