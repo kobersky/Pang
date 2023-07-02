@@ -35,7 +35,7 @@ public class Monster : MonoBehaviour
     private void OnDisable()
     {
         Debug.Log($"LEVEL: Monster: OnDisable: ");
-        OnMonsterDied?.Invoke(_enemyType, transform.position);
+      //  OnMonsterDied?.Invoke(_enemyType, transform.position);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -76,6 +76,8 @@ public class Monster : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        //  Destroy(gameObject);
+        OnMonsterDied?.Invoke(_enemyType, transform.position);
+        gameObject.SetActive(false);
     }
 }

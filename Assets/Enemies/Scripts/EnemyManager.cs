@@ -29,9 +29,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        Debug.Log($"LEVEL: EnemyManager: OnDisable: ");
+        Debug.Log($"LEVEL: EnemyManager: OnDisable (unsubscribing)");
         Monster.OnMonsterBorn -= AddToMonsterCount;
         Monster.OnMonsterDied -= DeductDromMonsterCount;
     }

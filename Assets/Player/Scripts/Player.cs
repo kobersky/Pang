@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"IMPACT: OnTriggerEnter (player): tag: {other.tag}, layer: {other.gameObject.layer}");
+        Debug.Log($"IMPACT: PLAYER: OnTriggerEnter: tag: {other.tag}, layer: {other.gameObject.layer}");
         if (other.tag == "Monster")
         {
            // OnStartedDying();//todo:revert after test
@@ -114,11 +114,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"IMPACT: OnCollisionEnter (player): {collision.collider.tag}");
+        Debug.Log($"IMPACT: PLAYER: OnCollisionEnter: {collision.collider.tag}");
 
         if (collision.collider.tag == "Monster")
         {
-            Debug.Log($"IMPACT: OnCollisionEnter (player) - Monster confirmed");
+            Debug.Log($"IMPACT: PLAYER: OnCollisionEnter - Monster confirmed");
             //  OnStartedDying();//todo:revert after test
         }
     }
