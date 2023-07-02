@@ -8,4 +8,7 @@ public static class PlayerAnimationKeys
     public const string IS_RUNNING = "isRunning";
     public const string IS_SHOOTING = "isShooting";
     public const string IS_DYING = "isDying";
+    public const string IS_WINNING = "isWinning";
+
 }
+

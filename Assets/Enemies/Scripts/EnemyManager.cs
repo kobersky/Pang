@@ -68,6 +68,7 @@ public class EnemyManager : MonoBehaviour
 
         else if (_monsterCount == 0)
         {
+            Debug.Log($"LEVEL: EnemyManager: WIN!");
             OnAllMonstersKilled?.Invoke();
         }
     }

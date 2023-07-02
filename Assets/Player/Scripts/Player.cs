@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour
@@ -39,6 +35,8 @@ public class Player : MonoBehaviour
         _inputManager.Character.Move.canceled += OnMovementCanceled;
         _inputManager.Character.Fire.performed += OnFired;
 
+        EnemyManager.OnAllMonstersKilled += OnLevelCompleted;
+
     }
 
     private void OnDisable()
@@ -48,6 +46,9 @@ public class Player : MonoBehaviour
         _inputManager.Character.Move.performed -= OnMovementPerformed;
         _inputManager.Character.Move.canceled -= OnMovementCanceled;
         _inputManager.Character.Fire.performed -= OnFired;
+
+        EnemyManager.OnAllMonstersKilled -= OnLevelCompleted;
+
     }
 
     private void FixedUpdate()
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
         Debug.Log($"IMPACT: OnTriggerEnter (player): tag: {other.tag}, layer: {other.gameObject.layer}");
         if (other.tag == "Monster")
         {
-            OnStartedDying();
+           // OnStartedDying();//todo:revert after test
         }
     }
 
@@ -118,7 +119,7 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Monster")
         {
             Debug.Log($"IMPACT: OnCollisionEnter (player) - Monster confirmed");
-            OnStartedDying();
+            //  OnStartedDying();//todo:revert after test
         }
     }
 
@@ -134,7 +135,6 @@ public class Player : MonoBehaviour
         _animator.SetTrigger(PlayerAnimationKeys.IS_DYING);
     }
 
-
     //used by animator
     public void OnDoneDying()
     {
@@ -142,4 +142,8 @@ public class Player : MonoBehaviour
         OnPlayerDied?.Invoke();//TODO: revert after test
     }
 
+    public void OnLevelCompleted()
+    {
+        _animator.SetTrigger(PlayerAnimationKeys.IS_WINNING);
+    }
 }

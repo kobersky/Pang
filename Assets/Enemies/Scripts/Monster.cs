@@ -69,7 +69,7 @@ public class Monster : MonoBehaviour
         if (collision.collider.tag == "PlayerProjectile")
         {
             Debug.Log($"IMPACT: Monster: OnCollisionEnter: {collision.collider.tag}");
-         //   Die();
+            Die();//todo:revert after test
         }
     }
 

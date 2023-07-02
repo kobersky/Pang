@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-
+using System.Threading.Tasks;
 public class GameController : MonoBehaviour
 {
     public GameObject _mobileController;
 
     private SceneLoader _sceneLoader;
     private bool _isPaused;
+
+    private const float WAITING_TIME_BEFORE_LEVELS = 2;
 
     private void Awake()
     {
@@ -130,7 +133,13 @@ public class GameController : MonoBehaviour
 
     private void GoToNextLevel()
     {
-        _sceneLoader.LoadNextLevel();
+        StartCoroutine(WaitAndLoadNextLevel());
     }
 
+    private IEnumerator WaitAndLoadNextLevel()
+    {
+        yield return new WaitForSeconds(WAITING_TIME_BEFORE_LEVELS);
+
+        _sceneLoader.LoadNextLevel();
+    }
 }
