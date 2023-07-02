@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour
 
     [SerializeField] float _startingXForce = 50;
     [SerializeField] float _floorCollisionBounceForce = 500;
+    [SerializeField] float _platformCollisionBounceForce = 250;
 
     float _currentXForce = 0;
 
@@ -33,6 +34,7 @@ public class Monster : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log($"LEVEL: Monster: OnDisable: ");
         OnMonsterDied?.Invoke(_enemyType, transform.position);
     }
 
@@ -47,6 +49,12 @@ public class Monster : MonoBehaviour
             _rigidBody.AddForce(new Vector3(_currentXForce, _floorCollisionBounceForce, 0));
         }
 
+        if (collision.collider.tag == "Platform")
+        {
+            //   Debug.Log("OnCollisionEnter Platform");
+            _rigidBody.AddForce(new Vector3(_currentXForce, _platformCollisionBounceForce, 0));
+        }
+
         if (collision.collider.tag == "Wall")
         {
             //   Debug.Log("OnCollisionEnter Wall");
@@ -57,10 +65,11 @@ public class Monster : MonoBehaviour
             //_rigidBody.AddForce(new Vector3(_currentXForce, _floorCollisionBounceForce, 0));
         }
 
+
         if (collision.collider.tag == "PlayerProjectile")
         {
             Debug.Log($"IMPACT: Monster: OnCollisionEnter: {collision.collider.tag}");
-            Die();
+         //   Die();
         }
     }
 

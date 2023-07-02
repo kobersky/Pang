@@ -55,8 +55,8 @@ public class GameController : MonoBehaviour
 
     private void SubscribeToPlayerEvents()
     {
-        CharControlledPlayer.OnPlayerDied += GameOver;
-        CharControlledPlayer.OnPlayerFinishedLevel += GoToNextLevel;
+        Player.OnPlayerDied += GameOver;
+        Player.OnPlayerFinishedLevel += GoToNextLevel;
     }
 
     private void SubscribeToLevelEvents()
@@ -80,8 +80,8 @@ public class GameController : MonoBehaviour
 
     private void UnsubscribeFromPlayerEvents()
     {
-        CharControlledPlayer.OnPlayerDied -= GameOver;
-        CharControlledPlayer.OnPlayerFinishedLevel -= GoToNextLevel;
+        Player.OnPlayerDied -= GameOver;
+        Player.OnPlayerFinishedLevel -= GoToNextLevel;
     }
 
     private void UnsubscribeFromLevelEvents()

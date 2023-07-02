@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
         Monster.OnMonsterDied += DeductDromMonsterCount;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         foreach (Transform currentTransform in _startingPositions)
         {
@@ -29,14 +29,16 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
+        Debug.Log($"LEVEL: EnemyManager: OnDisable: ");
         Monster.OnMonsterBorn -= AddToMonsterCount;
         Monster.OnMonsterDied -= DeductDromMonsterCount;
     }
 
     private void CreateEnemy(GameObject prefab, Vector3 currentTransform, bool isFacingRight)
     {
+        Debug.Log($"LEVEL: EnemyManager: CreateEnemy: {prefab.gameObject.name}");
         var monster = Instantiate(prefab, currentTransform, Quaternion.identity);
         monster.GetComponent<Monster>().InitMovement(isFacingRight);
     }
@@ -50,7 +52,7 @@ public class EnemyManager : MonoBehaviour
     private void DeductDromMonsterCount(EnemyType enemyType, Vector3 position)
     {
         _monsterCount--;
-        Debug.Log($"LEVEL: EnemyManager: _monsterCount: {_monsterCount}");
+        Debug.Log($"LEVEL: EnemyManager: _monsterCount: {_monsterCount}, isActiveInHierarchy: {isActiveAndEnabled}");
 
         if (enemyType == EnemyType.BigMonster)
         {

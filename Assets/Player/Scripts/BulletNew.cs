@@ -19,14 +19,12 @@ public class BulletNew : MonoBehaviour
     {
         _characterController.Move(Vector3.up * projectileSpeed * Time.fixedDeltaTime);
     }
-
-/*    
- *    not called
- *    private void OnTriggerEnter(Collider collider)
+    
+     private void OnTriggerEnter(Collider collider)
     {
         Debug.Log($"IMPACT: BulletNew: OnTriggerEnter: {collider.tag}");
 
-    }*/
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
