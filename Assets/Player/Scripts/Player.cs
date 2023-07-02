@@ -49,12 +49,21 @@ public class Player : MonoBehaviour
         _inputManager.Character.Fire.performed -= OnFired;
     }
 
-    private void OnMovementPerformed(CallbackContext callBackContext)
+    private void FixedUpdate()
     {
         if (_isInShootingPhase) return;
 
+        _characterController.Move(_horizontalMovement * _characterSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnMovementPerformed(CallbackContext callBackContext)
+    {
+
+      //  if (_isInShootingPhase) return;
+
         _horizontalMovement = callBackContext.ReadValue<Vector2>();
         Debug.Log($"INPUT: moving! [{_horizontalMovement.x}, {_horizontalMovement.y}");
+        
 
         AdjustFacingDirection();
 
@@ -65,6 +74,7 @@ public class Player : MonoBehaviour
     private void OnMovementCanceled(CallbackContext callBackContext)
     {
         _horizontalMovement = Vector2.zero;
+
         Debug.Log($"INPUT: canceled! [{_horizontalMovement.x}, {_horizontalMovement.y}");
         _animator.SetBool(PlayerAnimationKeys.IS_RUNNING, false);
     }
@@ -94,10 +104,6 @@ public class Player : MonoBehaviour
         _animator.SetBool(PlayerAnimationKeys.IS_SHOOTING, false);
     }
 
-    private void FixedUpdate()
-    {
-        _characterController.Move(_horizontalMovement * _characterSpeed * Time.fixedDeltaTime);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
