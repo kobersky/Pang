@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerFinishedLevel;
 
     private bool _isInShootingPhase;
+    private bool _isDying;
 
     private void Awake()
     {
@@ -51,8 +52,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isInShootingPhase) return;
+        if (_isInShootingPhase || _isDying) return;
 
+        AdjustFacingDirection();
         _characterController.Move(_horizontalMovement * _characterSpeed * Time.fixedDeltaTime);
     }
 
@@ -61,7 +63,7 @@ public class Player : MonoBehaviour
         _horizontalMovement = callBackContext.ReadValue<Vector2>();
         Debug.Log($"INPUT: moving! [{_horizontalMovement.x}, {_horizontalMovement.y}");
         
-        AdjustFacingDirection();
+     //   AdjustFacingDirection();
 
         _animator.SetBool(PlayerAnimationKeys.IS_RUNNING, true);
 
@@ -85,7 +87,6 @@ public class Player : MonoBehaviour
         OnShootingStarted();
     }
 
-    //used by animator
     public void OnShootingStarted()
     {
         _isInShootingPhase = true;
@@ -106,11 +107,8 @@ public class Player : MonoBehaviour
         Debug.Log($"IMPACT: OnTriggerEnter (player): tag: {other.tag}, layer: {other.gameObject.layer}");
         if (other.tag == "Monster")
         {
-           // OnPlayerDied?.Invoke();//TODO: revert after test
-            _animator.SetTrigger(PlayerAnimationKeys.IS_DYING);
-
+            OnStartedDying();
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -120,8 +118,7 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Monster")
         {
             Debug.Log($"IMPACT: OnCollisionEnter (player) - Monster confirmed");
-            // OnPlayerDied?.Invoke();//TODO: revert after test
-            _animator.SetTrigger(PlayerAnimationKeys.IS_DYING);
+            OnStartedDying();
         }
     }
 
@@ -131,5 +128,18 @@ public class Player : MonoBehaviour
         transform.localScale = new Vector2(facingDirection, transform.localScale.y);
     }
 
+    public void OnStartedDying()
+    {
+        _isDying = true;
+        _animator.SetTrigger(PlayerAnimationKeys.IS_DYING);
+    }
+
+
+    //used by animator
+    public void OnDoneDying()
+    {
+        _isDying = false;
+        OnPlayerDied?.Invoke();//TODO: revert after test
+    }
 
 }
