@@ -23,17 +23,13 @@ public class BulletNew : MonoBehaviour
      private void OnTriggerEnter(Collider collider)
     {
         Debug.Log($"IMPACT: BulletNew: OnTriggerEnter: {collider.tag}");
+        Destroy(gameObject);
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"IMPACT: BulletNew: OnCollisionEnter: {collision.collider.tag}");
-        Destroy(gameObject);
-    }
-
-    public void OnBarkEnd()
-    {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

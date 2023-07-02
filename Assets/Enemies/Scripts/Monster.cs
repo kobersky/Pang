@@ -66,13 +66,22 @@ public class Monster : MonoBehaviour
         }
 
 
-        if (collision.collider.tag == "PlayerProjectile")
+/*        if (collision.collider.tag == "PlayerProjectile")
         {
             Debug.Log($"IMPACT: Monster: OnCollisionEnter: {collision.collider.tag}");
             Die();//todo:revert after test
-        }
+        }*/
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "PlayerProjectile")
+        {
+            Debug.Log($"IMPACT: Monster: OnCollisionEnter: {collider.tag}");
+            Die();//todo:revert after test
+        }
+
+    }
 
     private void Die()
     {
