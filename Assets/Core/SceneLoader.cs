@@ -13,6 +13,8 @@ public class SceneLoader
     private const int VICTORY_INDEX = 2;
     private const int GAME_OVER_INDEX = 3;
 
+    private int CurrentSceneIndex => SceneManager.GetActiveScene().buildIndex;
+
     public void LoadMainMenuScene()
     {
         SceneManager.LoadScene(MAIN_MENU_INDEX);
@@ -25,18 +27,21 @@ public class SceneLoader
 
     public void LoadNextLevel()
     {
-        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        switch (currentSceneIndex)
+        switch (CurrentSceneIndex)
         { 
             case LEVEL_ONE:
                 SceneManager.LoadScene(VICTORY_INDEX);
                 break;
             default:
-                SceneManager.LoadScene(currentSceneIndex + 1);
+                SceneManager.LoadScene(CurrentSceneIndex + 1);
                 break;
 
         }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(CurrentSceneIndex);
     }
 
     public void LoadGameOverScene()

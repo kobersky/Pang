@@ -66,8 +66,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\InputManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\Core\SceneLoader.cs" />
     <Compile Include="Assets\UI\Scripts\RestartMenuManager.cs" />
     <Compile Include="Assets\Player\Scripts\PlayerGun.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -78,6 +78,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
+    <Compile Include="Assets\Core\GameController.cs" />
     <Compile Include="Assets\Player\Scripts\BulletNew.cs" />
     <Compile Include="Assets\MobileSupport\MobileController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
@@ -107,9 +108,9 @@
     <Compile Include="Assets\Player\Scripts\KinematicPlayer.cs" />
     <Compile Include="Assets\Enemies\Scripts\EnemyType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-    <Compile Include="Assets\SceneLoader.cs" />
+    <Compile Include="Assets\Core\InputManager.cs" />
+    <Compile Include="Assets\UI\Scripts\GamePlayInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
-    <Compile Include="Assets\GameController.cs" />
     <Compile Include="Assets\Player\Scripts\Bullet.cs" />
   </ItemGroup>
   <ItemGroup>
