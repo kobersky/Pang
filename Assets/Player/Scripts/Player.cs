@@ -58,13 +58,9 @@ public class Player : MonoBehaviour
 
     private void OnMovementPerformed(CallbackContext callBackContext)
     {
-
-      //  if (_isInShootingPhase) return;
-
         _horizontalMovement = callBackContext.ReadValue<Vector2>();
         Debug.Log($"INPUT: moving! [{_horizontalMovement.x}, {_horizontalMovement.y}");
         
-
         AdjustFacingDirection();
 
         _animator.SetBool(PlayerAnimationKeys.IS_RUNNING, true);
