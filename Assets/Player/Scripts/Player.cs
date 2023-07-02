@@ -61,13 +61,11 @@ public class Player : MonoBehaviour
 
     private void OnMovementPerformed(CallbackContext callBackContext)
     {
-        _horizontalMovement = callBackContext.ReadValue<Vector2>();
+        var movement = callBackContext.ReadValue<Vector2>(); //
+        _horizontalMovement = new Vector2(movement.x, 0);
         Debug.Log($"INPUT: moving! [{_horizontalMovement.x}, {_horizontalMovement.y}");
         
-     //   AdjustFacingDirection();
-
         _animator.SetBool(PlayerAnimationKeys.IS_RUNNING, true);
-
     }
 
     private void OnMovementCanceled(CallbackContext callBackContext)
