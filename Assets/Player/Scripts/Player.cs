@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public static event Action OnPlayerDied;
     public static event Action OnPlayerFinishedLevel;
 
+    private bool _isPaused;
     private bool _isInShootingPhase;
     private bool _isDying;
 
@@ -31,24 +32,55 @@ public class Player : MonoBehaviour
     {
         _inputManager.Enable();
 
-        _inputManager.Character.Move.performed += OnMovementPerformed;
-        _inputManager.Character.Move.canceled += OnMovementCanceled;
-        _inputManager.Character.Fire.performed += OnFired;
+        SubscribeToPlayerInput();
 
+        PauseMenuManager.OnPauseClickedAction += OnTogglePause;
+        PauseMenuManager.OnResumeClickedAction += OnTogglePause;
         EnemyManager.OnAllMonstersKilled += OnLevelCompleted;
 
     }
-
     private void OnDisable()
     {
         _inputManager.Disable();
 
+        UnsubscribeToPlayerInput();
+
+        PauseMenuManager.OnPauseClickedAction += OnTogglePause;
+        PauseMenuManager.OnResumeClickedAction += OnTogglePause;
+        EnemyManager.OnAllMonstersKilled -= OnLevelCompleted;
+
+    }
+
+    private void OnTogglePause()
+    {
+        Debug.Log("INPUTx: CALLED");
+        _isPaused = !_isPaused;
+        if (_isPaused)
+        {
+            Debug.Log("INPUTx: disabling for player");
+            UnsubscribeToPlayerInput();
+        }
+
+        else 
+        {
+            Debug.Log("INPUTx: enabling for player");
+            SubscribeToPlayerInput();
+        }
+    }
+
+    private void SubscribeToPlayerInput()
+    {
+        _inputManager.Character.Move.performed += OnMovementPerformed;
+        _inputManager.Character.Move.canceled += OnMovementCanceled;
+        _inputManager.Character.Fire.performed += OnFired;
+    }
+
+
+    private void UnsubscribeToPlayerInput()
+    {
         _inputManager.Character.Move.performed -= OnMovementPerformed;
         _inputManager.Character.Move.canceled -= OnMovementCanceled;
         _inputManager.Character.Fire.performed -= OnFired;
-
-        EnemyManager.OnAllMonstersKilled -= OnLevelCompleted;
-
     }
 
     private void FixedUpdate()

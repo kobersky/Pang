@@ -35,7 +35,7 @@ RectTransform:
   - {fileID: 4701945223461131295}
   - {fileID: 3027504354523258554}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -349,11 +349,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7342342722809291548, guid: 7e6cf4a3ec1aac34ab631899741c0f29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnStartNewGameClicked
+      value: StartANewGame
       objectReference: {fileID: 0}
     - target: {fileID: 7342342722809291548, guid: 7e6cf4a3ec1aac34ab631899741c0f29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuInputHandler, Assembly-CSharp
+      value: RestartMenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7342342722809291548, guid: 7e6cf4a3ec1aac34ab631899741c0f29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -487,11 +487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7342342722809291548, guid: 7e6cf4a3ec1aac34ab631899741c0f29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnQuitClicked
+      value: QuitGame
       objectReference: {fileID: 0}
     - target: {fileID: 7342342722809291548, guid: 7e6cf4a3ec1aac34ab631899741c0f29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuInputHandler, Assembly-CSharp
+      value: RestartMenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7342342722809291548, guid: 7e6cf4a3ec1aac34ab631899741c0f29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

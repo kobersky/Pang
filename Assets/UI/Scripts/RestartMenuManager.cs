@@ -6,13 +6,12 @@ public class RestartMenuManager : MonoBehaviour
 {
     private InputManager _inputManager;
     private Vector2 _navigation;
-
-    public static event Action OnStartNewGameClickedAction;
-    public static event Action OnQuitClickedAction;
+    private SceneLoader _sceneLoader;
 
     private void Awake()
     {
         _inputManager = new InputManager();
+        _sceneLoader = new SceneLoader();
     }
 
     private void OnEnable()
@@ -23,8 +22,8 @@ public class RestartMenuManager : MonoBehaviour
 
     private void OnDisable()
     {
-        _inputManager.Disable();
         _inputManager.UI.Navigate.performed -= OnNavigate;
+        _inputManager.Disable();
     }
 
     private void OnNavigate(InputAction.CallbackContext callbackContext)
@@ -33,13 +32,16 @@ public class RestartMenuManager : MonoBehaviour
         Debug.Log($"INPUT_MAIN: OnNavigate! [{_navigation.x}, {_navigation.y}");
     }
 
-    public void OnStartNewGameClicked()
+    public void StartANewGame()
     {
-        OnStartNewGameClickedAction?.Invoke();
+        _sceneLoader.LoadFirstLevel();
     }
 
-    public void OnQuitClicked()
+    public void QuitGame()
     {
-        OnQuitClickedAction?.Invoke();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }

@@ -7,18 +7,18 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] GameObject _buttonWrapper;
 
     private InputManager _inputManager;
-    private Vector2 _navigation;
+    private SceneLoader _sceneLoader;
 
     public static event Action OnPauseClickedAction;
     public static event Action OnResumeClickedAction;
-    public static event Action OnReturnToMainMenuClickedAction;
-    public static event Action OnQuitGameClickedAction;
 
     private bool _isPaused;
 
     private void Awake()
     {
         _inputManager = new InputManager();
+        _sceneLoader = new SceneLoader();
+
         _buttonWrapper.SetActive(false);
     }
 
@@ -39,8 +39,7 @@ public class PauseMenuManager : MonoBehaviour
     }
     private void OnNavigate(InputAction.CallbackContext callbackContext)
     {
-        _navigation = callbackContext.ReadValue<Vector2>();
-        Debug.Log($"INPUT_PAUSE: OnNavigate! [{_navigation.x}, {_navigation.y}");
+
     }
 
     private void OnTogglePause(InputAction.CallbackContext callBack)
@@ -76,13 +75,17 @@ public class PauseMenuManager : MonoBehaviour
         OnResumeClickedAction?.Invoke();
     }
 
-    public void OnMainMenuClicked()
+    public void ReturnToMainMenu()
     {
-        OnReturnToMainMenuClickedAction?.Invoke();
+        OnResumeClickedAction?.Invoke();
+        _sceneLoader.LoadMainMenuScene();
     }
 
-    public void OnQuitClicked()
+    public void QuitGame()
     {
-        OnQuitGameClickedAction?.Invoke();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }

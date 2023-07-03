@@ -18,6 +18,7 @@ public class GamePlayInfo : MonoBehaviour
         Debug.Log("LOADER: OnDisable");
         GameController.OnSceneLoadedAction -= UpdatePanel;
     }
+
     private void UpdatePanel(string sceneName, int livesLeft)
     {
         _levelName.text = sceneName;
