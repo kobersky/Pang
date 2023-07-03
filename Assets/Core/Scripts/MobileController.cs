@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* MobileController enables/disables virtual gamepad, depending on platform */
+
 public class MobileController : MonoBehaviour
 {
     [SerializeField] GameObject _virtualGamepad;

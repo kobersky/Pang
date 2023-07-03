@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/* Monster handles generic behaviour of an enemy - movement, detection by colliders, etc. */
 public class Monster : MonoBehaviour
 {
     [SerializeField] EnemyType _enemyType;
@@ -32,60 +33,37 @@ public class Monster : MonoBehaviour
         OnMonsterBorn?.Invoke();
     }
 
-    private void OnDisable()
-    {
-        Debug.Log($"LEVEL: Monster: OnDisable: ");
-      //  OnMonsterDied?.Invoke(_enemyType, transform.position);
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"OnCollisionEnter (Monster): {collision.collider.tag}");
 
-        if (collision.collider.tag == "Floor")
+        if (collision.collider.tag == TagKeys.FLOOR)
         {
-            //   Debug.Log("OnCollisionEnter Floor");
-
             _rigidBody.AddForce(new Vector3(_currentXForce, _floorCollisionBounceForce, 0));
         }
 
-        if (collision.collider.tag == "Platform")
+        if (collision.collider.tag == TagKeys.PLATFORM)
         {
-            //   Debug.Log("OnCollisionEnter Platform");
             _rigidBody.AddForce(new Vector3(_currentXForce, _platformCollisionBounceForce, 0));
         }
 
-        if (collision.collider.tag == "Wall")
+        if (collision.collider.tag == TagKeys.WALL)
         {
-            //   Debug.Log("OnCollisionEnter Wall");
             _currentXForce = -_currentXForce;
-
             _rigidBody.velocity = new Vector3(-_rigidBody.velocity.x, _rigidBody.velocity.y, 0);
-
-            //_rigidBody.AddForce(new Vector3(_currentXForce, _floorCollisionBounceForce, 0));
         }
-
-
-/*        if (collision.collider.tag == "PlayerProjectile")
-        {
-            Debug.Log($"IMPACT: Monster: OnCollisionEnter: {collision.collider.tag}");
-            Die();//todo:revert after test
-        }*/
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "PlayerProjectile")
+        if (collider.tag == TagKeys.PLAYER_PROJECTILE)
         {
-            Debug.Log($"IMPACT: Monster: OnCollisionEnter: {collider.tag}");
-            Die();//todo:revert after test
+            Die();
         }
-
     }
 
     private void Die()
     {
-        //  Destroy(gameObject);
         OnMonsterDied?.Invoke(_enemyType, transform.position);
         gameObject.SetActive(false);
     }

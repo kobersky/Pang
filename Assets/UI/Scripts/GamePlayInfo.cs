@@ -2,6 +2,9 @@ using System;
 using TMPro;
 using UnityEngine;
 
+/* GamePlayInfo handles displaying of info relevant to current level 
+ * currently, player lives and level name */
+
 public class GamePlayInfo : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _levelName;
@@ -9,13 +12,11 @@ public class GamePlayInfo : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("LOADER: OnEnable called");
         GameController.OnSceneLoadedAction += UpdatePanel;
     }
 
     void OnDisable()
     {
-        Debug.Log("LOADER: OnDisable");
         GameController.OnSceneLoadedAction -= UpdatePanel;
     }
 

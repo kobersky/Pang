@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* EnemyManager spawns enemies, counts active enemies 
+ * and reports when all of tem are killed */
+
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] GameObject _bigMonsterPrefab;
@@ -31,14 +34,12 @@ public class EnemyManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log($"LEVEL: EnemyManager: OnDisable (unsubscribing)");
         Monster.OnMonsterBorn -= AddToMonsterCount;
         Monster.OnMonsterDied -= DeductDromMonsterCount;
     }
 
     private void CreateEnemy(GameObject prefab, Vector3 currentTransform, bool isFacingRight)
     {
-        Debug.Log($"LEVEL: EnemyManager: CreateEnemy: {prefab.gameObject.name}");
         var monster = Instantiate(prefab, currentTransform, Quaternion.identity);
         monster.GetComponent<Monster>().InitMovement(isFacingRight);
     }
@@ -46,13 +47,11 @@ public class EnemyManager : MonoBehaviour
     private void AddToMonsterCount()
     {
         _monsterCount++;
-        Debug.Log($"LEVEL: EnemyManager: _monsterCount: {_monsterCount}");
     }
 
     private void DeductDromMonsterCount(EnemyType enemyType, Vector3 position)
     {
         _monsterCount--;
-        Debug.Log($"LEVEL: EnemyManager: _monsterCount: {_monsterCount}, isActiveInHierarchy: {isActiveAndEnabled}");
 
         if (enemyType == EnemyType.BigMonster)
         {
@@ -68,7 +67,6 @@ public class EnemyManager : MonoBehaviour
 
         else if (_monsterCount == 0)
         {
-            Debug.Log($"LEVEL: EnemyManager: WIN!");
             OnAllMonstersKilled?.Invoke();
         }
     }

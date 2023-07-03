@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/* RestartMenuManager handles behaviour of the generic 'start a new game/quit' menu */
 public class RestartMenuManager : MonoBehaviour
 {
     private InputManager _inputManager;
@@ -31,7 +32,6 @@ public class RestartMenuManager : MonoBehaviour
     private void OnNavigate(InputAction.CallbackContext callbackContext)
     {
         _navigation = callbackContext.ReadValue<Vector2>();
-        Debug.Log($"INPUT_MAIN: OnNavigate! [{_navigation.x}, {_navigation.y}");
     }
 
     public void StartANewGame()

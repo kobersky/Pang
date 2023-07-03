@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* CameraRatioEnforcer is responsible for enforcing 16/9 ratio for all devices */
 public class CameraRatioEnforcer : MonoBehaviour
 {
     private Camera _mainCamera;
@@ -34,9 +35,10 @@ public class CameraRatioEnforcer : MonoBehaviour
         }
     }
 
+    /* add letterbox by resizing camera's rect height 
+     * and adjusting it's vertical position */
     private void AdjustDisplayToLetterbox(float scaleHeight)
     {
-        // add letterbox by resizing camera's rect height and adjusting it's vertical position
 
         var rect = _mainCamera.rect;
 
@@ -48,10 +50,10 @@ public class CameraRatioEnforcer : MonoBehaviour
         _mainCamera.rect = rect;
     }
 
+    /* add pillarbox by resizing camera's rect width 
+     * and adjusting it's horizontal position */
     private void AdjustDisplayToPillarbox(float scaleWidth)
     {
-        // add pillarbox by resizing camera's rect width and adjusting it's horizontal position
-
         var rect = _mainCamera.rect;
 
         rect.width = scaleWidth;
@@ -60,6 +62,5 @@ public class CameraRatioEnforcer : MonoBehaviour
         rect.y = 0;
 
         _mainCamera.rect = rect;
-
     }
 }

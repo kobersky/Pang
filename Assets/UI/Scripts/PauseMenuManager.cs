@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/* PauseMenuManager handles behaviour of the pause menu triggering, 
+ * button actions and reporting of pause/ resume, since it alters gameplay */
 public class PauseMenuManager : MonoBehaviour
 {
     [SerializeField] GameObject _buttonWrapper;
@@ -24,14 +26,12 @@ public class PauseMenuManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log($"INPUT_PAUSE: OnEnable");
         _inputManager.Enable();
         _inputManager.UI.Cancel.performed += OnTogglePause;
     }
 
     private void OnDisable()
     {
-        Debug.Log($"INPUT_PAUSE: OnDisable");
         _inputManager.UI.Cancel.performed -= OnTogglePause;
         _inputManager.UI.Navigate.performed -= OnNavigate;
 
@@ -44,7 +44,6 @@ public class PauseMenuManager : MonoBehaviour
 
     private void OnTogglePause(InputAction.CallbackContext callBack)
     {
-        Debug.Log($"INPUT_PAUSE: OnTogglePause");
         if (_isPaused)
         {
             OnResumeClicked();
@@ -57,7 +56,6 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OnPauseClicked()
     {        
-        Debug.Log($"INPUT_PAUSE: OnPauseClicked");
         _isPaused = true;
         _buttonWrapper.SetActive(true);
         _inputManager.UI.Navigate.performed += OnNavigate;
@@ -67,7 +65,6 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OnResumeClicked()
     {
-        Debug.Log($"INPUT_PAUSE: OnResumeClicked");
         _isPaused = false;
         _buttonWrapper.SetActive(false);
         _inputManager.UI.Navigate.performed -= OnNavigate;

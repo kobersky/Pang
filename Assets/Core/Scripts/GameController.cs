@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/* GameController is persistent throughou the scenes,
+ * and manages gameflow in response to events */
 public class GameController : MonoBehaviour
 {
     private const int INITIAL_PLAYER_LIVES = 2;
@@ -19,12 +21,10 @@ public class GameController : MonoBehaviour
     {
         if (gameControllerInstance != null)
         {
-            Debug.Log("GameController: Awake - Destroy");
             Destroy(gameObject);
         }
         else
         {
-            Debug.Log("GameController - Awake - DontDestroyOnLoad");
             gameControllerInstance = this;
             _sceneLoader = new SceneLoader();
             DontDestroyOnLoad(this);

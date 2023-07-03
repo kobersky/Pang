@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/* SceneLoader loads scenes */
+
 public class SceneLoader
 {
     private const int MAIN_MENU_INDEX = 0;
@@ -34,7 +36,6 @@ public class SceneLoader
             default:
                 SceneManager.LoadScene(CurrentSceneIndex + 1);
                 break;
-
         }
     }
 
