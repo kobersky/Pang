@@ -762,38 +762,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobileController
       objectReference: {fileID: 0}
-    - target: {fileID: 3916638585157061502, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3916638585157061502, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 3916638585157061502, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
-      propertyPath: m_Color.b
-      value: 0.13329257
-      objectReference: {fileID: 0}
-    - target: {fileID: 3916638585157061502, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
-      propertyPath: m_Color.g
-      value: 0.10194911
-      objectReference: {fileID: 0}
-    - target: {fileID: 3916638585157061502, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
-      propertyPath: m_Color.r
-      value: 0.745283
-      objectReference: {fileID: 0}
-    - target: {fileID: 5039367265051303902, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5039367265051303902, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
-      propertyPath: m_Color.g
-      value: 0.9004603
-      objectReference: {fileID: 0}
-    - target: {fileID: 5039367265051303902, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8097973398551314098, guid: c009c744c079cde4ba5ecde864ee0c8a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
