@@ -8,6 +8,8 @@ public class RestartMenuManager : MonoBehaviour
     private Vector2 _navigation;
     private SceneLoader _sceneLoader;
 
+    public static event Action OnGameRestartedAction;
+
     private void Awake()
     {
         _inputManager = new InputManager();
@@ -34,6 +36,7 @@ public class RestartMenuManager : MonoBehaviour
 
     public void StartANewGame()
     {
+        OnGameRestartedAction?.Invoke();
         _sceneLoader.LoadFirstLevel();
     }
 

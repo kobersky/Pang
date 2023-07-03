@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    private static GameController gameControllerInstance;
-    public static event Action<string, int> OnSceneLoadedAction;
+    private const int INITIAL_PLAYER_LIVES = 2;
+    private const float WAITING_TIME_BEFORE_LEVELS = 2;
 
-    private int _playerLivesLeft = 2;
+    private int _playerLivesLeft = INITIAL_PLAYER_LIVES;
 
     private SceneLoader _sceneLoader;
+    private static GameController gameControllerInstance;
 
-    private const float WAITING_TIME_BEFORE_LEVELS = 2;
+    public static event Action<string, int> OnSceneLoadedAction;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class GameController : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         PauseMenuManager.OnPauseClickedAction += HaltTimeProgression;
         PauseMenuManager.OnResumeClickedAction += ResumeTimeProgression;
+        RestartMenuManager.OnGameRestartedAction += ResetGameParameters;
 
         EnemyManager.OnAllMonstersKilled += GoToNextLevel;
 
@@ -47,11 +49,17 @@ public class GameController : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         PauseMenuManager.OnPauseClickedAction -= HaltTimeProgression;
         PauseMenuManager.OnResumeClickedAction -= ResumeTimeProgression;
+        RestartMenuManager.OnGameRestartedAction -= ResetGameParameters;
 
         EnemyManager.OnAllMonstersKilled -= GoToNextLevel;
 
         Player.OnPlayerDied -= DeterminePlayerDeathOutcome;
         Player.OnPlayerFinishedLevel -= GoToNextLevel;
+    }
+
+    private void ResetGameParameters()
+    {
+        _playerLivesLeft = INITIAL_PLAYER_LIVES;
     }
 
     public void HaltTimeProgression()

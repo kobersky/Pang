@@ -66,7 +66,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904676843068230561}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -123,8 +123,8 @@ MonoBehaviour:
   _animator: {fileID: 7375929834759648243}
   _collider: {fileID: 1462950116877156836}
   _startingXForce: 50
-  _floorCollisionBounceForce: 500
-  _platformCollisionBounceForce: 250
+  _floorCollisionBounceForce: 1500
+  _platformCollisionBounceForce: 750
 --- !u!65 &1442706404529169171
 BoxCollider:
   m_ObjectHideFlags: 0

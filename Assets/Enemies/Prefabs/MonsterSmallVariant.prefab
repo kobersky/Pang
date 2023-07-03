@@ -88,10 +88,22 @@ PrefabInstance:
       propertyPath: _enemyType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8003146821031923117, guid: 06afc0729259d044a94313f2d8c366ec, type: 3}
+      propertyPath: _floorCollisionBounceForce
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003146821031923117, guid: 06afc0729259d044a94313f2d8c366ec, type: 3}
+      propertyPath: _platformCollisionBounceForce
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 8625960055654656433, guid: 06afc0729259d044a94313f2d8c366ec, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1067199949, guid: 289cd1f1ace59d74181a10290ea00493, type: 3}
+    - target: {fileID: 8882322723036589170, guid: 06afc0729259d044a94313f2d8c366ec, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
