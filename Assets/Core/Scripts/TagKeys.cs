@@ -8,4 +8,6 @@ public class TagKeys
     public const string WALL = "Wall";
     public const string FLOOR= "Floor";
     public const string PLATFORM = "Platform";
+    public const string MONSTER = "Monster";
+
 }

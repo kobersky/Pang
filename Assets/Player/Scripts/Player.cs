@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
-using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.InputSystem;
+
+/* Player handles generic behaviour of a player projectile - movement, detection by colliders, etc. */
 
 public class Player : MonoBehaviour
 {
@@ -53,17 +55,14 @@ public class Player : MonoBehaviour
 
     private void OnTogglePause()
     {
-        Debug.Log("INPUTx: CALLED");
         _isPaused = !_isPaused;
         if (_isPaused)
         {
-            Debug.Log("INPUTx: disabling for player");
             UnsubscribeToPlayerInput();
         }
 
         else 
         {
-            Debug.Log("INPUTx: enabling for player");
             SubscribeToPlayerInput();
         }
     }
@@ -91,29 +90,25 @@ public class Player : MonoBehaviour
         _characterController.Move(_horizontalMovement * _characterSpeed * Time.fixedDeltaTime);
     }
 
-    private void OnMovementPerformed(CallbackContext callBackContext)
+    private void OnMovementPerformed(InputAction.CallbackContext callBackContext)
     {
-        var movement = callBackContext.ReadValue<Vector2>(); //
+        var movement = callBackContext.ReadValue<Vector2>();
         _horizontalMovement = new Vector2(movement.x, 0);
-        Debug.Log($"INPUT: moving! [{_horizontalMovement.x}, {_horizontalMovement.y}");
         
         _animator.SetBool(PlayerAnimationKeys.IS_RUNNING, true);
     }
 
-    private void OnMovementCanceled(CallbackContext callBackContext)
+    private void OnMovementCanceled(InputAction.CallbackContext callBackContext)
     {
         _horizontalMovement = Vector2.zero;
-
-        Debug.Log($"INPUT: canceled! [{_horizontalMovement.x}, {_horizontalMovement.y}");
         _animator.SetBool(PlayerAnimationKeys.IS_RUNNING, false);
     }
 
 
-    private void OnFired(CallbackContext callBackContext)
+    private void OnFired(InputAction.CallbackContext callBackContext)
     {
         if (_isInShootingPhase) return;
 
-        Debug.Log($"INPUT: firing!");
         Instantiate(_bullet, _gun.transform.position, Quaternion.identity);
         OnShootingStarted();
     }
@@ -134,12 +129,9 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"IMPACT: PLAYER: OnCollisionEnter: {collision.collider.tag}");
-
-        if (collision.collider.tag == "Monster")
+        if (collision.collider.tag == TagKeys.MONSTER)
         {
-            Debug.Log($"IMPACT: PLAYER: OnCollisionEnter - Monster confirmed");
-            OnStartedDying();//todo:revert after test
+            OnStartedDying();
         }
     }
 
@@ -159,7 +151,7 @@ public class Player : MonoBehaviour
     public void OnDoneDying()
     {
         _isDying = false;
-        OnPlayerDied?.Invoke();//TODO: revert after test
+        OnPlayerDied?.Invoke();
     }
 
     public void OnLevelCompleted()

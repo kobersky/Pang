@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 /* Monster handles generic behaviour of an enemy - movement, detection by colliders, etc. */
@@ -35,8 +34,6 @@ public class Monster : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"OnCollisionEnter (Monster): {collision.collider.tag}");
-
         if (collision.collider.tag == TagKeys.FLOOR)
         {
             _rigidBody.AddForce(new Vector3(_currentXForce, _floorCollisionBounceForce, 0));

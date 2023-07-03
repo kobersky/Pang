@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+/* BulletNew generic behaviour of a player projectile - movement, detection by colliders, etc. */
 
 public class BulletNew : MonoBehaviour
 {
@@ -12,7 +12,6 @@ public class BulletNew : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-
     }
 
     private void FixedUpdate()
@@ -20,16 +19,9 @@ public class BulletNew : MonoBehaviour
         _characterController.Move(Vector3.up * projectileSpeed * Time.fixedDeltaTime);
     }
     
-     private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log($"IMPACT: BulletNew: OnTriggerEnter: {collider.tag}");
         Destroy(gameObject);
 
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log($"IMPACT: BulletNew: OnCollisionEnter: {collision.collider.tag}");
-        //Destroy(gameObject);
     }
 }
