@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Monster")
         {
             Debug.Log($"IMPACT: PLAYER: OnCollisionEnter - Monster confirmed");
-            OnStartedDying();//todo:revert after test
+     //       OnStartedDying();//todo:revert after test
         }
     }
 

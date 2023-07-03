@@ -7,11 +7,10 @@ using UnityEngine.SceneManagement;
 public class SceneLoader
 {
     private const int MAIN_MENU_INDEX = 0;
-    private const int LEVEL_ONE = 1;
-    private const int LEVEL_TWO = -1;
-    private const int LEVEL_THREE = -1;
-    private const int VICTORY_INDEX = 2;
-    private const int GAME_OVER_INDEX = 3;
+    private const int FIRST_LEVEL = 1;
+    private const int LAST_LEVEL = 3;
+    private const int VICTORY_INDEX = 4;
+    private const int GAME_OVER_INDEX = 5;
 
     private int CurrentSceneIndex => SceneManager.GetActiveScene().buildIndex;
 
@@ -22,14 +21,14 @@ public class SceneLoader
 
     public void LoadFirstLevel()
     {
-        SceneManager.LoadScene(LEVEL_ONE);
+        SceneManager.LoadScene(FIRST_LEVEL);
     }
 
     public void LoadNextLevel()
     {
         switch (CurrentSceneIndex)
         { 
-            case LEVEL_ONE:
+            case LAST_LEVEL:
                 SceneManager.LoadScene(VICTORY_INDEX);
                 break;
             default:
